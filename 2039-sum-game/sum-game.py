@@ -1,0 +1,19 @@
+class Solution(object):
+    def sumGame(self, num):
+        n = len(num)
+        mid = n // 2
+
+        s1, q1 = 0, 0
+        for ch in num[:mid]:
+          if ch == "?":
+                q1 += 1
+          else:
+              s1 += int(ch)
+
+        s2, q2 = 0, 0
+        for ch in num[mid:]:
+            if ch == "?":
+             q2 += 1
+            else:
+             s2 += int(ch)
+        return 2 * (s1 - s2) != 9 * (q2 - q1)
