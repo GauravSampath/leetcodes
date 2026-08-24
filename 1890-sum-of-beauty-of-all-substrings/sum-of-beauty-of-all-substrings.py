@@ -1,12 +1,16 @@
 class Solution(object):
     def beautySum(self, s):
-        ans = 0
+        total_beauty = 0
         for i in range(len(s)):
-            cnt = [0] * 26
+            freq = {}
             for j in range(i, len(s)):
-                cnt[ord(s[j]) - 97] += 1
-                vals = [f for f in cnt if f]
-                ans += max(vals) - min(vals)
-        return ans
+                freq[s[j]] = freq.get(s[j], 0) + 1
+                counts = freq.values()
+                minF = min(counts)
+                maxF = max(counts)
+                total_beauty+=(maxF-minF)
+        return total_beauty
+
+        
 
         
