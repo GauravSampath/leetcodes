@@ -1,12 +1,18 @@
 class Solution(object):
     def firstStableIndex(self, nums, k):
         n = len(nums)
-        for i in range(0, n):
-            a = max(nums[:i+1])
-            b = min(nums[i:])
-            score = a-b
+        prefixMax = [0] * n
+        prefixMax[0] = nums[0]
+        suffixMin = [0] * n
+        suffixMin[n-1] = nums[n-1]
+        for i in range(1, n):
+            prefixMax[i] = max(prefixMax[i-1], nums[i])
+        for i in range(n-2, -1, -1):
+            suffixMin[i] = min(nums[i], suffixMin[i+1])
+        for i in range(n):
+            score = prefixMax[i] - suffixMin[i]
             if score <= k:
-             return i
+                return i
         return -1
 
         
