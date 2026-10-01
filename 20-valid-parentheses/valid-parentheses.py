@@ -1,7 +1,6 @@
 class Solution(object):
     def isValid(self, s):
       pairs = ["()","{}","[]"]
-
       while True:
           found_pair = False
           for pair in pairs:
